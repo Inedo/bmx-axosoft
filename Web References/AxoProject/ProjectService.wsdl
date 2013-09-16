@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://axosoft.com/ontime/webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://axosoft.com/ontime/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://axosoft.com/ontime/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetAllProjects">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllProjectsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllProjectsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByProjectId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByProjectIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByProjectIdResult" type="tns:Project" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Project">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasChildren" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasAlerts" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasAttachments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasNotificationLists" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFieldValues" type="tns:ArrayOfCustomFieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldValue" nillable="true" type="tns:CustomFieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField" type="tns:CustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CustomFieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableFieldName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:CustomFieldTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordType" type="tns:CustomRecordTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldLabel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PickListId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StringSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Format" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMultiSelect" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsEditable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCustomField" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGroupable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSearchable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SortExpression" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectExpression" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CustomFieldTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Double" />
+          <s:enumeration value="String" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="PickList" />
+          <s:enumeration value="Text" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="Hyperlink" />
+          <s:enumeration value="Comments" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="CustomRecordTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Defect" />
+          <s:enumeration value="Feature" />
+          <s:enumeration value="Task" />
+          <s:enumeration value="Incident" />
+          <s:enumeration value="WorkLog" />
+          <s:enumeration value="Project" />
+          <s:enumeration value="Customer" />
+          <s:enumeration value="CustomerContact" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AddProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="project" type="tns:Project" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddProjectResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="project" type="tns:Project" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteProjectResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCustomerCustomFieldValuesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomerCustomFieldValuesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomerCustomFieldValuesListResult" type="tns:ArrayOfCustomFieldValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomFieldsListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllProjectsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllProjects" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProjectsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllProjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByProjectIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByProjectId" />
+  </wsdl:message>
+  <wsdl:message name="GetByProjectIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByProjectIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:AddProject" />
+  </wsdl:message>
+  <wsdl:message name="AddProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:AddProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProject" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteProject" />
+  </wsdl:message>
+  <wsdl:message name="DeleteProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerCustomFieldValuesListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomerCustomFieldValuesList" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomerCustomFieldValuesListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomerCustomFieldValuesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldsList" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldsListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ProjectHandlerSoap">
+    <wsdl:operation name="GetAllProjects">
+      <wsdl:input message="tns:GetAllProjectsSoapIn" />
+      <wsdl:output message="tns:GetAllProjectsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByProjectId">
+      <wsdl:input message="tns:GetByProjectIdSoapIn" />
+      <wsdl:output message="tns:GetByProjectIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProject">
+      <wsdl:input message="tns:AddProjectSoapIn" />
+      <wsdl:output message="tns:AddProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <wsdl:input message="tns:UpdateProjectSoapIn" />
+      <wsdl:output message="tns:UpdateProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <wsdl:input message="tns:DeleteProjectSoapIn" />
+      <wsdl:output message="tns:DeleteProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCustomFieldValuesList">
+      <wsdl:input message="tns:GetCustomerCustomFieldValuesListSoapIn" />
+      <wsdl:output message="tns:GetCustomerCustomFieldValuesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <wsdl:input message="tns:GetCustomFieldsListSoapIn" />
+      <wsdl:output message="tns:GetCustomFieldsListSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProjectHandlerSoap" type="tns:ProjectHandlerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllProjects">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetAllProjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByProjectId">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetByProjectId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCustomFieldValuesList">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomerCustomFieldValuesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ProjectHandlerSoap12" type="tns:ProjectHandlerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllProjects">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetAllProjects" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByProjectId">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetByProjectId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/UpdateProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/DeleteProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCustomFieldValuesList">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomerCustomFieldValuesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProjectHandler">
+    <wsdl:port name="ProjectHandlerSoap" binding="tns:ProjectHandlerSoap">
+      <soap:address location="http://localhost:8080/ProjectService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ProjectHandlerSoap12" binding="tns:ProjectHandlerSoap12">
+      <soap12:address location="http://localhost:8080/ProjectService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://axosoft.com/ontime/webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://axosoft.com/ontime/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://axosoft.com/ontime/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="AddFeature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="feature" type="tns:Feature" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Feature">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:OnTimeItem">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="FeatureId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="PlannedBuildNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CompletionDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequestedById" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="RequestedByCustomerContactId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CreatorId" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OnTimeItem" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HasAttachments" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasNotifications" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasRelatedItems" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasSCMFiles" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasEmails" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasWorkLog" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasAlerts" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustomFieldValues" type="tns:ArrayOfCustomFieldValue" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProjectId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdatedById" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Archived" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="WorkflowStepId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReportedById" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="AssignedToId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedById" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReportedByCustomerContactId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedDuration" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="DurationUnitTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingDuration" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemainingUnitTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualDuration" type="s:float" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActualUnitTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PubliclyViewable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PriorityTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReleaseId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StatusTypeId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PercentComplete" type="s:unsignedByte" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreatedDateTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastUpdatedDateTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastUpdated" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="VoteCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VoteAverage" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UserVote" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="VoteItemType" type="tns:VoteItemType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ItemId" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomFieldValue" nillable="true" type="tns:CustomFieldValue" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomFieldValue">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CustomField" type="tns:CustomField" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomField">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CustomFieldId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableFieldName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FieldType" type="tns:CustomFieldTypes" />
+          <s:element minOccurs="1" maxOccurs="1" name="RecordType" type="tns:CustomRecordTypes" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldLabel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PickListId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StringSize" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Format" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DisplayOrder" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMultiSelect" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsEditable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsCustomField" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsGroupable" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsSearchable" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SortExpression" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectExpression" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="CustomFieldTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Double" />
+          <s:enumeration value="String" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="PickList" />
+          <s:enumeration value="Text" />
+          <s:enumeration value="Boolean" />
+          <s:enumeration value="Hyperlink" />
+          <s:enumeration value="Comments" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="CustomRecordTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Defect" />
+          <s:enumeration value="Feature" />
+          <s:enumeration value="Task" />
+          <s:enumeration value="Incident" />
+          <s:enumeration value="WorkLog" />
+          <s:enumeration value="Project" />
+          <s:enumeration value="Customer" />
+          <s:enumeration value="CustomerContact" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="VoteItemType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Defect" />
+          <s:enumeration value="Feature" />
+          <s:enumeration value="Task" />
+          <s:enumeration value="Incident" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="AddFeatureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddFeatureResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFeatureWithNotification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="feature" type="tns:Feature" />
+            <s:element minOccurs="1" maxOccurs="1" name="processNotification" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddFeatureWithNotificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddFeatureWithNotificationResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFeature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="feature" type="tns:Feature" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFeatureResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UpdateFeatureWithLock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="feature" type="tns:Feature" />
+            <s:element minOccurs="1" maxOccurs="1" name="lockId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateFeatureWithLockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="newLockId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFeature">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFeatureResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteFeatureWithLock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="featureLastUpdated" type="s:base64Binary" />
+            <s:element minOccurs="1" maxOccurs="1" name="lockId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteFeatureWithLockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="newLockId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllFeatures">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllFeaturesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllFeaturesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllFeaturesWithNames">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllFeaturesWithNamesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllFeaturesWithNamesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="releaseId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByReleaseResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByReleaseAndProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="releaseId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByReleaseAndProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByReleaseAndProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByCustomerResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerAndProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerAndProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByCustomerAndProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerContactId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerContactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByCustomerContactResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerContactAndProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerContactId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByCustomerContactAndProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByCustomerContactAndProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userFilterFlags" type="tns:UsersTreeFilterFlags" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="UsersTreeFilterFlags">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="CreatedBy" />
+              <s:enumeration value="ReportedBy" />
+              <s:enumeration value="AssignedTo" />
+              <s:enumeration value="LastUpdatedBy" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="GetFeaturesByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByUserResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByUserAndProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userFilterFlags" type="tns:UsersTreeFilterFlags" />
+            <s:element minOccurs="1" maxOccurs="1" name="projectId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFeaturesByUserAndProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFeaturesByUserAndProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByFeatureId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByFeatureIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByFeatureIdResult" type="tns:Feature" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldValuesList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldValuesListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomFieldValuesListResult" type="tns:ArrayOfCustomFieldValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCustomFieldsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCustomFieldsListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddChangeNotificationUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddChangeNotificationUserResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddChangeNotificationCustomerContact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="customerContactId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddChangeNotificationCustomerContactResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AddChangeNotificationEmailAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddChangeNotificationEmailAddressResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="CastVote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="featureId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="userType" type="tns:UserType" />
+            <s:element minOccurs="1" maxOccurs="1" name="userId" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="voteNumber" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="UserType">
+        <s:restriction base="s:string">
+          <s:enumeration value="User" />
+          <s:enumeration value="CustomerContact" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CastVoteResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddFeatureSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFeature" />
+  </wsdl:message>
+  <wsdl:message name="AddFeatureSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFeatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddFeatureWithNotificationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddFeatureWithNotification" />
+  </wsdl:message>
+  <wsdl:message name="AddFeatureWithNotificationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddFeatureWithNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFeatureSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFeature" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFeatureSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFeatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFeatureWithLockSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateFeatureWithLock" />
+  </wsdl:message>
+  <wsdl:message name="UpdateFeatureWithLockSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateFeatureWithLockResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFeatureSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFeature" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFeatureSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFeatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFeatureWithLockSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteFeatureWithLock" />
+  </wsdl:message>
+  <wsdl:message name="DeleteFeatureWithLockSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteFeatureWithLockResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllFeaturesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllFeatures" />
+  </wsdl:message>
+  <wsdl:message name="GetAllFeaturesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllFeaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllFeaturesWithNamesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllFeaturesWithNames" />
+  </wsdl:message>
+  <wsdl:message name="GetAllFeaturesWithNamesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllFeaturesWithNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByProject" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByRelease" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByReleaseAndProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByReleaseAndProject" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByReleaseAndProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByReleaseAndProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomer" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerAndProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerAndProject" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerAndProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerAndProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerContactSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerContact" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerContactSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerContactAndProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerContactAndProject" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByCustomerContactAndProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByCustomerContactAndProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByUserAndProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByUserAndProject" />
+  </wsdl:message>
+  <wsdl:message name="GetFeaturesByUserAndProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFeaturesByUserAndProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByFeatureIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByFeatureId" />
+  </wsdl:message>
+  <wsdl:message name="GetByFeatureIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByFeatureIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldValuesListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldValuesList" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldValuesListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldValuesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldsListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldsList" />
+  </wsdl:message>
+  <wsdl:message name="GetCustomFieldsListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCustomFieldsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationUser" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationCustomerContactSoapIn">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationCustomerContact" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationCustomerContactSoapOut">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationCustomerContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationEmailAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationEmailAddress" />
+  </wsdl:message>
+  <wsdl:message name="AddChangeNotificationEmailAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:AddChangeNotificationEmailAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="CastVoteSoapIn">
+    <wsdl:part name="parameters" element="tns:CastVote" />
+  </wsdl:message>
+  <wsdl:message name="CastVoteSoapOut">
+    <wsdl:part name="parameters" element="tns:CastVoteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FeatureHandlerSoap">
+    <wsdl:operation name="AddFeature">
+      <wsdl:input message="tns:AddFeatureSoapIn" />
+      <wsdl:output message="tns:AddFeatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFeatureWithNotification">
+      <wsdl:input message="tns:AddFeatureWithNotificationSoapIn" />
+      <wsdl:output message="tns:AddFeatureWithNotificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeature">
+      <wsdl:input message="tns:UpdateFeatureSoapIn" />
+      <wsdl:output message="tns:UpdateFeatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeatureWithLock">
+      <wsdl:input message="tns:UpdateFeatureWithLockSoapIn" />
+      <wsdl:output message="tns:UpdateFeatureWithLockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeature">
+      <wsdl:input message="tns:DeleteFeatureSoapIn" />
+      <wsdl:output message="tns:DeleteFeatureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeatureWithLock">
+      <wsdl:input message="tns:DeleteFeatureWithLockSoapIn" />
+      <wsdl:output message="tns:DeleteFeatureWithLockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeatures">
+      <wsdl:input message="tns:GetAllFeaturesSoapIn" />
+      <wsdl:output message="tns:GetAllFeaturesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeaturesWithNames">
+      <wsdl:input message="tns:GetAllFeaturesWithNamesSoapIn" />
+      <wsdl:output message="tns:GetAllFeaturesWithNamesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByProject">
+      <wsdl:input message="tns:GetFeaturesByProjectSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByRelease">
+      <wsdl:input message="tns:GetFeaturesByReleaseSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByReleaseAndProject">
+      <wsdl:input message="tns:GetFeaturesByReleaseAndProjectSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByReleaseAndProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomer">
+      <wsdl:input message="tns:GetFeaturesByCustomerSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerAndProject">
+      <wsdl:input message="tns:GetFeaturesByCustomerAndProjectSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByCustomerAndProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContact">
+      <wsdl:input message="tns:GetFeaturesByCustomerContactSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByCustomerContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContactAndProject">
+      <wsdl:input message="tns:GetFeaturesByCustomerContactAndProjectSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByCustomerContactAndProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUser">
+      <wsdl:input message="tns:GetFeaturesByUserSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUserAndProject">
+      <wsdl:input message="tns:GetFeaturesByUserAndProjectSoapIn" />
+      <wsdl:output message="tns:GetFeaturesByUserAndProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByFeatureId">
+      <wsdl:input message="tns:GetByFeatureIdSoapIn" />
+      <wsdl:output message="tns:GetByFeatureIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldValuesList">
+      <wsdl:input message="tns:GetCustomFieldValuesListSoapIn" />
+      <wsdl:output message="tns:GetCustomFieldValuesListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <wsdl:input message="tns:GetCustomFieldsListSoapIn" />
+      <wsdl:output message="tns:GetCustomFieldsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationUser">
+      <wsdl:input message="tns:AddChangeNotificationUserSoapIn" />
+      <wsdl:output message="tns:AddChangeNotificationUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationCustomerContact">
+      <wsdl:input message="tns:AddChangeNotificationCustomerContactSoapIn" />
+      <wsdl:output message="tns:AddChangeNotificationCustomerContactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationEmailAddress">
+      <wsdl:input message="tns:AddChangeNotificationEmailAddressSoapIn" />
+      <wsdl:output message="tns:AddChangeNotificationEmailAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CastVote">
+      <wsdl:input message="tns:CastVoteSoapIn" />
+      <wsdl:output message="tns:CastVoteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FeatureHandlerSoap" type="tns:FeatureHandlerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddFeature">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddFeature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFeatureWithNotification">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddFeatureWithNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeature">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/UpdateFeature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeatureWithLock">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/UpdateFeatureWithLock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeature">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/DeleteFeature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeatureWithLock">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/DeleteFeatureWithLock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeatures">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetAllFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeaturesWithNames">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetAllFeaturesWithNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByRelease">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByReleaseAndProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByReleaseAndProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomer">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerAndProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerAndProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContact">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContactAndProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerContactAndProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUser">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUserAndProject">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByUserAndProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByFeatureId">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetByFeatureId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldValuesList">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldValuesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationUser">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationCustomerContact">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationCustomerContact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationEmailAddress">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationEmailAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CastVote">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/CastVote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FeatureHandlerSoap12" type="tns:FeatureHandlerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddFeature">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddFeature" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFeatureWithNotification">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddFeatureWithNotification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeature">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/UpdateFeature" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateFeatureWithLock">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/UpdateFeatureWithLock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeature">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/DeleteFeature" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteFeatureWithLock">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/DeleteFeatureWithLock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeatures">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetAllFeatures" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllFeaturesWithNames">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetAllFeaturesWithNames" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByRelease">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByReleaseAndProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByReleaseAndProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomer">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerAndProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerAndProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContact">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByCustomerContactAndProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByCustomerContactAndProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUser">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFeaturesByUserAndProject">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetFeaturesByUserAndProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByFeatureId">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetByFeatureId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldValuesList">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldValuesList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomFieldsList">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCustomFieldsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationUser">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationCustomerContact">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationCustomerContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddChangeNotificationEmailAddress">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddChangeNotificationEmailAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CastVote">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/CastVote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FeatureHandler">
+    <wsdl:port name="FeatureHandlerSoap" binding="tns:FeatureHandlerSoap">
+      <soap:address location="http://localhost:8080/FeatureService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FeatureHandlerSoap12" binding="tns:FeatureHandlerSoap12">
+      <soap12:address location="http://localhost:8080/FeatureService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

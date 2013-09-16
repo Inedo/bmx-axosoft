@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://axosoft.com/ontime/webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://axosoft.com/ontime/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://axosoft.com/ontime/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetStatusTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetStatusTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetStatusTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSeverityTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSeverityTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSeverityTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPriorityTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPriorityTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPriorityTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryTypesByOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="ownerId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCategoryTypesByOwnerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCategoryTypesByOwnerResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeUnitTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTimeUnitTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTimeUnitTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemRelationTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemRelationTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemRelationTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkLogTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWorkLogTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWorkLogTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReleaseTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseStatusTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseStatusTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReleaseStatusTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseStatusTypesByReleaseType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="releaseTypeId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReleaseStatusTypesByReleaseTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReleaseStatusTypesByReleaseTypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetStatusTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetStatusTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetStatusTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSeverityTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSeverityTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetSeverityTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSeverityTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPriorityTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPriorityTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetPriorityTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPriorityTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoryTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryTypesByOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCategoryTypesByOwner" />
+  </wsdl:message>
+  <wsdl:message name="GetCategoryTypesByOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCategoryTypesByOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeUnitTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTimeUnitTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetTimeUnitTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTimeUnitTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetItemRelationTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItemRelationTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetItemRelationTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemRelationTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkLogTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWorkLogTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetWorkLogTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWorkLogTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReleaseTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReleaseTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseStatusTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReleaseStatusTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseStatusTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReleaseStatusTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseStatusTypesByReleaseTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReleaseStatusTypesByReleaseType" />
+  </wsdl:message>
+  <wsdl:message name="GetReleaseStatusTypesByReleaseTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReleaseStatusTypesByReleaseTypeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TypeHandlerSoap">
+    <wsdl:operation name="GetStatusTypes">
+      <wsdl:input message="tns:GetStatusTypesSoapIn" />
+      <wsdl:output message="tns:GetStatusTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeverityTypes">
+      <wsdl:input message="tns:GetSeverityTypesSoapIn" />
+      <wsdl:output message="tns:GetSeverityTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityTypes">
+      <wsdl:input message="tns:GetPriorityTypesSoapIn" />
+      <wsdl:output message="tns:GetPriorityTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypes">
+      <wsdl:input message="tns:GetCategoryTypesSoapIn" />
+      <wsdl:output message="tns:GetCategoryTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypesByOwner">
+      <wsdl:input message="tns:GetCategoryTypesByOwnerSoapIn" />
+      <wsdl:output message="tns:GetCategoryTypesByOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeUnitTypes">
+      <wsdl:input message="tns:GetTimeUnitTypesSoapIn" />
+      <wsdl:output message="tns:GetTimeUnitTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemRelationTypes">
+      <wsdl:input message="tns:GetItemRelationTypesSoapIn" />
+      <wsdl:output message="tns:GetItemRelationTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkLogTypes">
+      <wsdl:input message="tns:GetWorkLogTypesSoapIn" />
+      <wsdl:output message="tns:GetWorkLogTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseTypes">
+      <wsdl:input message="tns:GetReleaseTypesSoapIn" />
+      <wsdl:output message="tns:GetReleaseTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypes">
+      <wsdl:input message="tns:GetReleaseStatusTypesSoapIn" />
+      <wsdl:output message="tns:GetReleaseStatusTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypesByReleaseType">
+      <wsdl:input message="tns:GetReleaseStatusTypesByReleaseTypeSoapIn" />
+      <wsdl:output message="tns:GetReleaseStatusTypesByReleaseTypeSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TypeHandlerSoap" type="tns:TypeHandlerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStatusTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetStatusTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeverityTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetSeverityTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetPriorityTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCategoryTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypesByOwner">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetCategoryTypesByOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeUnitTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetTimeUnitTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemRelationTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetItemRelationTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkLogTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetWorkLogTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypes">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseStatusTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypesByReleaseType">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseStatusTypesByReleaseType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TypeHandlerSoap12" type="tns:TypeHandlerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetStatusTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetStatusTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeverityTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetSeverityTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPriorityTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetPriorityTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCategoryTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryTypesByOwner">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetCategoryTypesByOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTimeUnitTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetTimeUnitTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemRelationTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetItemRelationTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWorkLogTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetWorkLogTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypes">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseStatusTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReleaseStatusTypesByReleaseType">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetReleaseStatusTypesByReleaseType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TypeHandler">
+    <wsdl:port name="TypeHandlerSoap" binding="tns:TypeHandlerSoap">
+      <soap:address location="http://localhost:8080/TypeService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TypeHandlerSoap12" binding="tns:TypeHandlerSoap12">
+      <soap12:address location="http://localhost:8080/TypeService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

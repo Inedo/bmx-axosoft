@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://axosoft.com/ontime/webservices/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://axosoft.com/ontime/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://axosoft.com/ontime/webservices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetAllReleases">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllReleasesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllReleasesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByReleaseId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="releaseId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByReleaseIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByReleaseIdResult" type="tns:Release" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Release">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ReleaseId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ParentReleaseId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReleaseTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="DueDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="VelocityStartDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReleaseStatusTypeId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReleaseNotes" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Projects" type="tns:ArrayOfInt" />
+          <s:element minOccurs="1" maxOccurs="1" name="HasChildren" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="release" type="tns:Release" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddReleaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddReleaseResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="0" maxOccurs="1" name="release" type="tns:Release" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateReleaseResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteRelease">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="securityToken" type="s1:guid" />
+            <s:element minOccurs="1" maxOccurs="1" name="releaseId" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteReleaseResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllReleasesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllReleases" />
+  </wsdl:message>
+  <wsdl:message name="GetAllReleasesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllReleasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByReleaseIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetByReleaseId" />
+  </wsdl:message>
+  <wsdl:message name="GetByReleaseIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetByReleaseIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:AddRelease" />
+  </wsdl:message>
+  <wsdl:message name="AddReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:AddReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRelease" />
+  </wsdl:message>
+  <wsdl:message name="UpdateReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateReleaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteReleaseSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRelease" />
+  </wsdl:message>
+  <wsdl:message name="DeleteReleaseSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteReleaseResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ReleaseHandlerSoap">
+    <wsdl:operation name="GetAllReleases">
+      <wsdl:input message="tns:GetAllReleasesSoapIn" />
+      <wsdl:output message="tns:GetAllReleasesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByReleaseId">
+      <wsdl:input message="tns:GetByReleaseIdSoapIn" />
+      <wsdl:output message="tns:GetByReleaseIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRelease">
+      <wsdl:input message="tns:AddReleaseSoapIn" />
+      <wsdl:output message="tns:AddReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelease">
+      <wsdl:input message="tns:UpdateReleaseSoapIn" />
+      <wsdl:output message="tns:UpdateReleaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelease">
+      <wsdl:input message="tns:DeleteReleaseSoapIn" />
+      <wsdl:output message="tns:DeleteReleaseSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ReleaseHandlerSoap" type="tns:ReleaseHandlerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllReleases">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetAllReleases" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByReleaseId">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/GetByReleaseId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRelease">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/AddRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelease">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/UpdateRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelease">
+      <soap:operation soapAction="http://axosoft.com/ontime/webservices/DeleteRelease" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ReleaseHandlerSoap12" type="tns:ReleaseHandlerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllReleases">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetAllReleases" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByReleaseId">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/GetByReleaseId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddRelease">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/AddRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRelease">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/UpdateRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRelease">
+      <soap12:operation soapAction="http://axosoft.com/ontime/webservices/DeleteRelease" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReleaseHandler">
+    <wsdl:port name="ReleaseHandlerSoap" binding="tns:ReleaseHandlerSoap">
+      <soap:address location="http://localhost:8080/ReleaseService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ReleaseHandlerSoap12" binding="tns:ReleaseHandlerSoap12">
+      <soap12:address location="http://localhost:8080/ReleaseService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
