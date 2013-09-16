@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using Inedo.BuildMaster.Extensibility.Providers.IssueTracking;
 using System.Data;
+using Inedo.BuildMaster.Extensibility.Providers.IssueTracking;
 using Inedo.BuildMasterExtensions.Axosoft.Data;
 
 namespace Inedo.BuildMasterExtensions.Axosoft
 {
     [Serializable]
-    public sealed class OnTimeTrackerIssue : Issue
+    public sealed class OnTimeTrackerIssue : IssueTrackerIssue
     {
         private OnTimeTrackerIssue(int id, string title, string description, string status, string release, IssueType type)
             : base(id.ToString() + ((type == IssueType.Defect) ? "d" : "f"), status, string.Format("{0}: {1}", type, title), description, release)

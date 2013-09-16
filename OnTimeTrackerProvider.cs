@@ -135,7 +135,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
         /// <returns>
         /// The URL of the specified issue if applicable; otherwise null.
         /// </returns>
-        public override string GetIssueUrl(Issue issue)
+        public override string GetIssueUrl(IssueTrackerIssue issue)
         {
             if (issue == null)
                 throw new ArgumentNullException("issue");
@@ -155,11 +155,11 @@ namespace Inedo.BuildMasterExtensions.Axosoft
             return CombinePaths(this.OnTimeWebUrl, string.Format(urlFormat, onTimeIssue.Id));
         }
 
-        public override Issue[] GetIssues(string releaseNumber)
+        public override IssueTrackerIssue[] GetIssues(string releaseNumber)
         {
             var projectId = GetProjectFilter();
             if (projectId == null)
-                return new Issue[0];
+                return new IssueTrackerIssue[0];
 
             var releases = new Dictionary<int, DataRow>();
             var releaseRows = this.ReleaseHandler.GetAllReleases(this.securityToken).Tables[0].Rows;
@@ -195,7 +195,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
 
             return issues.ToArray();
         }
-        public override bool IsIssueClosed(Issue issue)
+        public override bool IsIssueClosed(IssueTrackerIssue issue)
         {
             if (issue == null)
                 throw new ArgumentNullException("issue");
@@ -241,7 +241,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
         {
             return "Connects to the issue tracking system of Axosoft OnTime.";
         }
-        public CategoryBase[] GetCategories()
+        public IssueTrackerCategory[] GetCategories()
         {
             var allProjects = GetAllProjects();
             return allProjects

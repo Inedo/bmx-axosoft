@@ -10,7 +10,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
     /// <summary>
     /// Custom editor for the OnTime Tracker Provider.
     /// </summary>
-    public sealed class OnTimeTrackerProviderEditor : ProviderEditorBase
+    internal sealed class OnTimeTrackerProviderEditor : ProviderEditorBase
     {
         private ValidatingTextBox txtBaseUrl;
         private TextBox txtOnTimeWebUrl;
