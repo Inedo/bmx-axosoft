@@ -7,25 +7,15 @@ using Inedo.Web.Controls;
 
 namespace Inedo.BuildMasterExtensions.Axosoft
 {
-    /// <summary>
-    /// Custom editor for the OnTime Tracker Provider.
-    /// </summary>
     internal sealed class OnTimeTrackerProviderEditor : ProviderEditorBase
     {
         private ValidatingTextBox txtBaseUrl;
         private TextBox txtOnTimeWebUrl;
         private ValidatingTextBox txtSecurityToken;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OnTimeTrackerProviderEditor"/> class.
-        /// </summary>
-        public OnTimeTrackerProviderEditor()
-        {
-        }
-
         public override void BindToForm(ProviderBase extension)
         {
-            EnsureChildControls();
+            this.EnsureChildControls();
 
             var provider = (OnTimeTrackerProvider)extension;
             this.txtBaseUrl.Text = provider.BaseUrl ?? "";
@@ -35,7 +25,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
 
         public override ProviderBase CreateFromForm()
         {
-            EnsureChildControls();
+            this.EnsureChildControls();
 
             return new OnTimeTrackerProvider()
             {
@@ -47,24 +37,19 @@ namespace Inedo.BuildMasterExtensions.Axosoft
 
         protected override void CreateChildControls()
         {
-            txtBaseUrl = new ValidatingTextBox()
+            this.txtBaseUrl = new ValidatingTextBox
             {
-                Width = 300,
                 Required = true
             };
 
-            txtOnTimeWebUrl = new TextBox()
-            {
-                Width = 300
-            };
+            this.txtOnTimeWebUrl = new ValidatingTextBox();
 
-            txtSecurityToken = new ValidatingTextBox()
+            this.txtSecurityToken = new ValidatingTextBox
             {
-                Width = 300,
                 Required = true
             };
 
-            CUtil.Add(this,
+            this.Controls.Add(
                 new FormFieldGroup("OnTime Server",
                     "The URL's of the Axosoft OnTime web service and OnTime Web, for example: http://ontime:8080",
                     false,
@@ -74,27 +59,21 @@ namespace Inedo.BuildMasterExtensions.Axosoft
                     new StandardFormField(
                         "OnTime Web URL (optional):",
                         txtOnTimeWebUrl)
-                    ),
+                ),
                 new FormFieldGroup("Configuration",
                     "The security token GUID specified in the OnTime web service web.config file.",
                     false,
                     new StandardFormField(
                         "Security Token:",
                         txtSecurityToken)
-                    )
+                )
             );
-
-            base.CreateChildControls();
         }
 
-        /// <summary>
-        /// Raises the <see cref="E:ValidateBeforeSave"/> event.
-        /// </summary>
-        /// <param name="e">The <see cref="Inedo.BuildMaster.Web.Controls.Extensions.ValidationEventArgs&lt;Inedo.BuildMaster.Extensibility.Providers.ProviderBase&gt;"/> instance containing the event data.</param>
         protected override void OnValidateBeforeSave(ValidationEventArgs<ProviderBase> e)
         {
             base.OnValidateBeforeSave(e);
-            if (e.ValidLevel == ValidationLevels.Valid)
+            if (e.ValidLevel == ValidationLevel.Valid)
                 return;
 
             try
@@ -104,7 +83,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
             catch
             {
                 e.Message = "Security token must be a GUID.";
-                e.ValidLevel = ValidationLevels.Error;
+                e.ValidLevel = ValidationLevel.Error;
             }
         }
     }
