@@ -1,7 +1,5 @@
-﻿using System;
-using System.Web.UI.WebControls;
+﻿using System.Web.UI.WebControls;
 using Inedo.BuildMaster.Extensibility.Providers;
-using Inedo.BuildMaster.Web.Controls;
 using Inedo.BuildMaster.Web.Controls.Extensions;
 using Inedo.Web.Controls;
 
@@ -15,8 +13,6 @@ namespace Inedo.BuildMasterExtensions.Axosoft
 
         public override void BindToForm(ProviderBase extension)
         {
-            this.EnsureChildControls();
-
             var provider = (OnTimeTrackerProvider)extension;
             this.txtBaseUrl.Text = provider.BaseUrl ?? "";
             this.txtOnTimeWebUrl.Text = provider.OnTimeWebUrl ?? "";
@@ -25,9 +21,7 @@ namespace Inedo.BuildMasterExtensions.Axosoft
 
         public override ProviderBase CreateFromForm()
         {
-            this.EnsureChildControls();
-
-            return new OnTimeTrackerProvider()
+            return new OnTimeTrackerProvider
             {
                 BaseUrl = this.txtBaseUrl.Text,
                 OnTimeWebUrl = this.txtOnTimeWebUrl.Text,
@@ -42,49 +36,25 @@ namespace Inedo.BuildMasterExtensions.Axosoft
                 Required = true
             };
 
-            this.txtOnTimeWebUrl = new ValidatingTextBox();
+            this.txtOnTimeWebUrl = new ValidatingTextBox
+            {
+                DefaultText = "not specified"
+            };
 
             this.txtSecurityToken = new ValidatingTextBox
             {
-                Required = true
+                Required = true,
+                ValidationExpression = @"^\{?[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\}$"
             };
 
             this.Controls.Add(
-                new FormFieldGroup("OnTime Server",
-                    "The URL's of the Axosoft OnTime web service and OnTime Web, for example: http://ontime:8080",
-                    false,
-                    new StandardFormField(
-                        "Web Service URL (Path to installed OnTime SDK):",
-                        txtBaseUrl),
-                    new StandardFormField(
-                        "OnTime Web URL (optional):",
-                        txtOnTimeWebUrl)
-                ),
-                new FormFieldGroup("Configuration",
-                    "The security token GUID specified in the OnTime web service web.config file.",
-                    false,
-                    new StandardFormField(
-                        "Security Token:",
-                        txtSecurityToken)
-                )
+                new SlimFormField("Web service URL:", this.txtBaseUrl),
+                new SlimFormField("OnTime web URL:", this.txtOnTimeWebUrl),
+                new SlimFormField("Security token:", this.txtSecurityToken)
+                {
+                    HelpText = "Provide the security token GUID specified in the OnTime web service web.config file."
+                }
             );
-        }
-
-        protected override void OnValidateBeforeSave(ValidationEventArgs<ProviderBase> e)
-        {
-            base.OnValidateBeforeSave(e);
-            if (e.ValidLevel == ValidationLevel.Valid)
-                return;
-
-            try
-            {
-                new Guid(this.txtSecurityToken.Text);
-            }
-            catch
-            {
-                e.Message = "Security token must be a GUID.";
-                e.ValidLevel = ValidationLevel.Error;
-            }
         }
     }
 }

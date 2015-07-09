@@ -32,13 +32,6 @@ namespace Inedo.BuildMasterExtensions.Axosoft
         //http://localhost/OnTime2010Web/defects/viewdefect.aspx?defectid=36
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnTimeTrackerProvider"/> class.
-        /// </summary>
-        public OnTimeTrackerProvider()
-        {
-        }
-
-        /// <summary>
         /// Gets or sets the URL of the issue tracker web service.
         /// </summary>
         [Persistent]
